@@ -1,5 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import { NgModule ,} from '@angular/core';
+import { FormsModule }   from '@angular/forms';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -9,6 +10,9 @@ import { ProductsSideNavigationComponent } from './products-side-navigation/prod
 import { FeedbackQueryComponent } from './feedback-query/feedback-query.component';
 import { ProductBannerWidgetComponent } from './product-banner-widget/product-banner-widget.component';
 import { BreadcrumbsComponent } from './breadcrumbs/breadcrumbs.component';
+import { MainscreenComponent } from './mainscreen/mainscreen.component';
+import { ProductBycategoryComponent } from './ProductPages/product-bycategory/product-bycategory.component';
+import { ProductDetailComponent } from './ProductPages/product-detail/product-detail.component';
 
 @NgModule({
   declarations: [
@@ -18,11 +22,15 @@ import { BreadcrumbsComponent } from './breadcrumbs/breadcrumbs.component';
     ProductsSideNavigationComponent,
     FeedbackQueryComponent,
     ProductBannerWidgetComponent,
-    BreadcrumbsComponent
+    BreadcrumbsComponent,
+    MainscreenComponent,
+    ProductBycategoryComponent,
+    ProductDetailComponent
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

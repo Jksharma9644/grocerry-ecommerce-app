@@ -7,9 +7,32 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ProductsSideNavigationComponent implements OnInit {
 
+  public navList:any;
   constructor() { }
 
   ngOnInit() {
+
+    this.navList = [{
+      name: "Branded Foods",
+      url: "branded",
+    },
+    {
+      name: "Households",
+      url: "huseholds",
+
+    },
+    {
+      name: "Veggies & Fruits",
+      submenu: [{
+        name: "Vegetables",
+        url: "vegies",
+      },
+      {
+        name: "Fruits",
+        url: "fruits",
+      }]
+
+    }]
   }
 
 }
