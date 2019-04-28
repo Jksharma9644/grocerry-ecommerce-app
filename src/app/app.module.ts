@@ -8,6 +8,7 @@ import { FooterComponent } from './footer/footer.component';
 import { ProductsSideNavigationComponent } from './products-side-navigation/products-side-navigation.component';
 import { FeedbackQueryComponent } from './feedback-query/feedback-query.component';
 import { ProductBannerWidgetComponent } from './product-banner-widget/product-banner-widget.component';
+import { BreadcrumbsComponent } from './breadcrumbs/breadcrumbs.component';
 
 @NgModule({
   declarations: [
@@ -16,7 +17,8 @@ import { ProductBannerWidgetComponent } from './product-banner-widget/product-ba
     FooterComponent,
     ProductsSideNavigationComponent,
     FeedbackQueryComponent,
-    ProductBannerWidgetComponent
+    ProductBannerWidgetComponent,
+    BreadcrumbsComponent
   ],
   imports: [
     BrowserModule,
