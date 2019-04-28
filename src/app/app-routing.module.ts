@@ -5,6 +5,9 @@ import { ProductBycategoryComponent } from './ProductPages/product-bycategory/pr
 import { ProductDetailComponent } from './ProductPages/product-detail/product-detail.component';
 import { LayoutFullComponent } from './layout/layout-full/layout-full.component';
 import { Layout80Component } from './layout/layout80/layout80.component';
+import { ContactUsComponent } from './contact-us/contact-us.component';
+import { LoginComponent } from './login/login.component';
+
 const routes: Routes = [
   {
     path: '',
@@ -18,7 +21,9 @@ const routes: Routes = [
     component: Layout80Component,
     children: [
       { path: 'product/:item', component: ProductBycategoryComponent },
-      { path: 'details/:id', component: ProductDetailComponent }
+      { path: 'details/:id', component: ProductDetailComponent },
+      { path: 'contact', component: ContactUsComponent },
+      { path: 'login', component: LoginComponent }
     ]
   },
   { path: '**', redirectTo: '' }

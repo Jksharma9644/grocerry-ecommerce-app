@@ -16,6 +16,8 @@ import { LayoutFullComponent } from './layout/layout-full/layout-full.component'
 import { Layout80Component } from './layout/layout80/layout80.component';
 import { ProductBannerHomeComponent } from './product-banner-home/product-banner-home.component';
 import { ProductBannerCategoryComponent } from './product-banner-category/product-banner-category.component';
+import { ContactUsComponent } from './contact-us/contact-us.component';
+import { LoginComponent } from './login/login.component';
 
 @NgModule({
   declarations: [
@@ -31,7 +33,9 @@ import { ProductBannerCategoryComponent } from './product-banner-category/produc
     LayoutFullComponent,
     Layout80Component,
     ProductBannerHomeComponent,
-    ProductBannerCategoryComponent
+    ProductBannerCategoryComponent,
+    ContactUsComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,
