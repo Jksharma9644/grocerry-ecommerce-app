@@ -7,6 +7,7 @@ import { LayoutFullComponent } from './layout/layout-full/layout-full.component'
 import { Layout80Component } from './layout/layout80/layout80.component';
 import { ContactUsComponent } from './contact-us/contact-us.component';
 import { LoginComponent } from './login/login.component';
+import { CheckoutpageComponent } from './checkoutpage/checkoutpage.component';
 
 const routes: Routes = [
   {
@@ -23,6 +24,7 @@ const routes: Routes = [
       { path: 'product/:item', component: ProductBycategoryComponent },
       { path: 'details/:id', component: ProductDetailComponent },
       { path: 'contact', component: ContactUsComponent },
+      { path: 'checkout', component: CheckoutpageComponent },
       { path: 'login', component: LoginComponent }
     ]
   },

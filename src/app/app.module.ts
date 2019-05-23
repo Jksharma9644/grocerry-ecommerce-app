@@ -1,7 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule ,} from '@angular/core';
 import { FormsModule }   from '@angular/forms';
-
+import { HttpClientModule } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { TopHeaderComponent } from './top-header/top-header.component';
@@ -18,7 +18,10 @@ import { ProductBannerHomeComponent } from './product-banner-home/product-banner
 import { ProductBannerCategoryComponent } from './product-banner-category/product-banner-category.component';
 import { ContactUsComponent } from './contact-us/contact-us.component';
 import { LoginComponent } from './login/login.component';
+// services
 
+import {ProductService} from './services/product.service';
+import { CheckoutpageComponent } from './checkoutpage/checkoutpage.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -35,14 +38,16 @@ import { LoginComponent } from './login/login.component';
     ProductBannerHomeComponent,
     ProductBannerCategoryComponent,
     ContactUsComponent,
-    LoginComponent
+    LoginComponent,
+    CheckoutpageComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    FormsModule
+    FormsModule,
+    HttpClientModule
   ],
-  providers: [],
+  providers: [ProductService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
