@@ -2471,7 +2471,7 @@ table.timetable_sub {
 	border:1px solid #CDCDCD;
 }
 td.invert-image a img {
-    width:30%;
+    width:70px;
     margin: 0 auto;
 }
 .rem{
@@ -4485,6 +4485,7 @@ input.checkbox:checked:after {
 	}
 	#PPMiniCart .minicart-quantity {
 		font-size: 11px;
+		
 	}
 }
 @media (max-width: 375px){

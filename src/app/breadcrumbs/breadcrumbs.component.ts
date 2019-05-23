@@ -13,7 +13,7 @@ export class BreadcrumbsComponent implements OnInit {
 
   constructor(public currentRoute:ActivatedRoute,public router:Router) { 
     this.router.events.subscribe((router:any)=>{
-             console.log(router)
+            //  console.log(router)
     })
 
   }

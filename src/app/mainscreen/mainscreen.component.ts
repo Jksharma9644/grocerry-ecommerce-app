@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ProductService } from '../services/product.service';
+import {SharedService} from '../services/shared.service';
+import {Router} from '@angular/router'
 @Component({
   selector: 'app-mainscreen',
   templateUrl: './mainscreen.component.html',
@@ -7,9 +9,11 @@ import { ProductService } from '../services/product.service';
 })
 export class MainscreenComponent implements OnInit {
 
-  constructor(private productService: ProductService) { }
+  constructor(private productService: ProductService,public sharedService:SharedService,public router:Router) { }
 
   productList = [];
+  cartList=[];
+
 
   ngOnInit() {
     this.getAllProductList();
@@ -42,5 +46,19 @@ export class MainscreenComponent implements OnInit {
       }
     })
 
+  }
+  addToCart(item){
+   
+    var index=this.cartList.findIndex(a=>a.PRODUCT_ID==item.PRODUCT_ID);
+    if(index==-1){
+      this.cartList.push(item);
+      // console.log(   this.cartList);
+      // this.router.navigate["/checkout"]
+    }else{
+      alert("item already in cart")
+    }
+    this.sharedService.senrefreshCardList( this.cartList)
+    localStorage.setItem("cartdetails",JSON.stringify(this.cartList));
+  
   }
 }

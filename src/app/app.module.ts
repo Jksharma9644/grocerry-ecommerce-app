@@ -21,7 +21,9 @@ import { LoginComponent } from './login/login.component';
 // services
 
 import {ProductService} from './services/product.service';
+import {SharedService} from './services/shared.service';
 import { CheckoutpageComponent } from './checkoutpage/checkoutpage.component';
+import { MinicartComponent } from './minicart/minicart.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -39,7 +41,8 @@ import { CheckoutpageComponent } from './checkoutpage/checkoutpage.component';
     ProductBannerCategoryComponent,
     ContactUsComponent,
     LoginComponent,
-    CheckoutpageComponent
+    CheckoutpageComponent,
+    MinicartComponent
   ],
   imports: [
     BrowserModule,
@@ -47,7 +50,7 @@ import { CheckoutpageComponent } from './checkoutpage/checkoutpage.component';
     FormsModule,
     HttpClientModule
   ],
-  providers: [ProductService],
+  providers: [ProductService,SharedService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

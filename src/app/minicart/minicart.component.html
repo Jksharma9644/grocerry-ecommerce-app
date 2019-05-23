@@ -1,0 +1,44 @@
+
+<div id="PPMiniCart" [style.display]="isOpen?'block':'none'">
+    <form method="post" class="" action="checkout.html" target="">
+      <button type="button" class="minicart-closer"(click)="isOpen=false">×</button>
+      <ul>
+        <li class="minicart-item" *ngFor="let list of cartObject?.list;let i=index">
+          <div class="minicart-details-name">
+            <a class="minicart-name" routerLink="/product/vegies">{{list.NAME}}</a>
+            <ul class="minicart-attributes">
+              <li>Discount: ₹{{list.DISCOUNTRATE}}
+                <input type="hidden" name="discount_amount_1" value="1">
+              </li>
+            </ul>
+          </div>
+          <div class="minicart-details-quantity">
+            <input min="1" max="100" [(ngModel)]="list.NET_QTY" class="minicart-quantity"  name="quantity_1" type="number" pattern="[0-9]*" value="1" autocomplete="off" (ngModelChange)="qtyChange(i,$event)">
+          </div>
+          <div class="minicart-details-remove">
+            <button type="button" class="minicart-remove" (click)="remove(i)">×</button>
+          </div>
+          <div class="minicart-details-price">
+            <span class="minicart-price">₹{{list.NET_AMOUNT}}</span>
+          </div>
+          <input type="hidden" name="item_name_1" value="premium bake rusk">
+          <input type="hidden" name="amount_1" value="5">
+          <input type="hidden" name="shipping_1" value="undefined">
+          <input type="hidden" name="shipping2_1" value="undefined">
+        </li>
+       
+      </ul>
+      <div class="minicart-footer">
+        <div class="minicart-subtotal"> Subtotal: ₹{{cartObject?.totalAmount}} </div>
+        <button class="minicart-submit" type="button" (click)="checkout()" >Check Out with
+          <!-- <img src="//cdnjs.cloudflare.com/ajax/libs/minicart/3.0.1/paypal_65x18.png" width="65" height="18" alt="PayPal"> -->
+        </button>
+      </div>
+      <input type="hidden" name="cmd" value="_cart">
+      <input type="hidden" name="upload" value="1">
+      <input type="hidden" name="bn" value="MiniCart_AddToCart_WPS_US">
+      <input type="hidden" name="business" value=" ">
+      <input type="hidden" name="currency_code" value="USD">
+      <input type="hidden" name="return" value=" ">
+      <input type="hidden" name="cancel_return" value=" "> </form>
+  </div>

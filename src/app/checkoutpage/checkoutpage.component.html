@@ -1,18 +1,17 @@
 <div class="privacy about">
-  <h3>Chec
-    <span>kout</span>
-  </h3>
+    <h3>Chec<span>kout</span></h3>
+
 
   <div class="checkout-right">
     <h4>Your shopping cart contains:
-      <span>3 Products</span>
+      <span>{{checkoutObject?.list.length}}Products</span>
     </h4>
     <table class="timetable_sub">
       <thead>
         <tr>
           <th>SL No.</th>
           <th>Product</th>
-          <th>Quality</th>
+          <th>Quantity</th>
           <th>Product Name</th>
 
           <th>Price</th>
@@ -20,90 +19,35 @@
         </tr>
       </thead>
       <tbody>
-        <tr class="rem1">
-          <td class="invert">1</td>
+        <tr class="rem1" *ngFor="let item of checkoutObject?.list;let i=index">
+          <td class="invert">{{i+1}}</td>
           <td class="invert-image">
-            <a href="single.html">
-              <img src="images/1.png" alt=" " class="img-responsive">
+            <a  routerLink="/details/iddynamic">
+              <img src="{{item?.imageurl}}" alt=" " class="img-responsive">
             </a>
           </td>
           <td class="invert">
             <div class="quantity">
               <div class="quantity-select">
-                <div class="entry value-minus">&nbsp;</div>
+                <div class="entry value-minus"(click)="deQty(i)">&nbsp;</div>
                 <div class="entry value">
-                  <span>1</span>
+                  <span>{{item?.NET_QTY}}</span>
                 </div>
-                <div class="entry value-plus active">&nbsp;</div>
+                <div class="entry value-plus active" (click)="inQty(i)">&nbsp;</div>
               </div>
             </div>
           </td>
-          <td class="invert">Fortune Sunflower Oil</td>
+          <td class="invert">{{item?.NAME}}</td>
 
-          <td class="invert">$290.00</td>
+          <td class="invert">${{item?.NET_AMOUNT}}</td>
           <td class="invert">
             <div class="rem">
-              <div class="close1"> </div>
+              <div class="close1" (click)="remove(i)"> </div>
             </div>
 
           </td>
         </tr>
-        <tr class="rem2">
-          <td class="invert">2</td>
-          <td class="invert-image">
-            <a href="single.html">
-              <img src="images/3.png" alt=" " class="img-responsive">
-            </a>
-          </td>
-          <td class="invert">
-            <div class="quantity">
-              <div class="quantity-select">
-                <div class="entry value-minus">&nbsp;</div>
-                <div class="entry value">
-                  <span>1</span>
-                </div>
-                <div class="entry value-plus active">&nbsp;</div>
-              </div>
-            </div>
-          </td>
-          <td class="invert">Basmati Rise (5 Kg)</td>
-
-          <td class="invert">$250.00</td>
-          <td class="invert">
-            <div class="rem">
-              <div class="close2"> </div>
-            </div>
-
-          </td>
-        </tr>
-        <tr class="rem3">
-          <td class="invert">3</td>
-          <td class="invert-image">
-            <a href="single.html">
-              <img src="images/2.png" alt=" " class="img-responsive">
-            </a>
-          </td>
-          <td class="invert">
-            <div class="quantity">
-              <div class="quantity-select">
-                <div class="entry value-minus">&nbsp;</div>
-                <div class="entry value">
-                  <span>1</span>
-                </div>
-                <div class="entry value-plus active">&nbsp;</div>
-              </div>
-            </div>
-          </td>
-          <td class="invert">Pepsi Soft Drink (2 Ltr)</td>
-
-          <td class="invert">$15.00</td>
-          <td class="invert">
-            <div class="rem">
-              <div class="close3"> </div>
-            </div>
-
-          </td>
-        </tr>
+        
 
       </tbody>
     </table>
@@ -112,25 +56,18 @@
     <div class="col-md-4 checkout-left-basket">
       <h4>Continue to basket</h4>
       <ul>
-        <li>Product1
+        <li *ngFor="let item of checkoutObject?.list;let i=index">Product {{i+1}}
           <i>-</i>
-          <span>$15.00 </span>
+          <span>₹{{item.NET_AMOUNT}} </span>
         </li>
-        <li>Product2
-          <i>-</i>
-          <span>$25.00 </span>
-        </li>
-        <li>Product3
-          <i>-</i>
-          <span>$29.00 </span>
-        </li>
+       
         <li>Total Service Charges
           <i>-</i>
-          <span>$15.00</span>
+          <span>00</span>
         </li>
-        <li>Total
+        <li class="total_amount">Total
           <i>-</i>
-          <span>$84.00</span>
+          <span>₹{{checkoutObject?.totalAmount ? checkoutObject.totalAmount:"--"}}</span>
         </li>
       </ul>
     </div>
