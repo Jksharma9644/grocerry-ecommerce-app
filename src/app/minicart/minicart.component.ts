@@ -10,7 +10,7 @@ import {Router} from '@angular/router'
 })
 export class MinicartComponent implements OnInit {
 
-@Output() gotocheckout =new EventEmitter();
+// @Output() gotocheckout =new EventEmitter();
   subscription: Subscription;
   cartObject={
     list:[],
@@ -76,7 +76,7 @@ export class MinicartComponent implements OnInit {
 
     this.sharedService.checkoutObject=this.cartObject;
     this.sharedService.isMinicartOpen=false;
-    this.gotocheckout.emit("true");
+    // this.gotocheckout.emit("true");
     localStorage.setItem("cart-details",JSON.stringify(this.cartObject));
 
     this.router.navigateByUrl("/checkout")
