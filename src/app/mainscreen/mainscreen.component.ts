@@ -41,24 +41,38 @@ export class MainscreenComponent implements OnInit {
           }
           return a;
         })
-        console.log(this.productList);
+        // console.log(this.productList);
 
       }
     })
 
   }
   addToCart(item){
-   
+   var list =  localStorage.getItem("cart-details")
+   if(list!=null){
+     var cartdetails=JSON.parse(list);
+     this.cartList=cartdetails.list;
+   }else{
+    this.cartList=[];
+   }
     var index=this.cartList.findIndex(a=>a.PRODUCT_ID==item.PRODUCT_ID);
     if(index==-1){
       this.cartList.push(item);
+      var object={
+        list: this.cartList,
+        totalAmount:item.NETPRICE
+      }
+      // this.cartList.push(object);
+
       // console.log(   this.cartList);
       // this.router.navigate["/checkout"]
+      this.sharedService.senrefreshCardList( object.list);
+      localStorage.setItem("cart-details",JSON.stringify(object));
+
     }else{
       alert("item already in cart")
     }
-    this.sharedService.senrefreshCardList( this.cartList)
-    localStorage.setItem("cartdetails",JSON.stringify(this.cartList));
+   
   
   }
 }

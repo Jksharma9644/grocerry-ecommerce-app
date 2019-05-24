@@ -15,7 +15,7 @@ export class CheckoutpageComponent implements OnInit {
   ngOnInit() {
     var cartDetails = localStorage.getItem("cart-details");
 
-    if (this.sharedService.checkoutObject != null) {
+    if (this.sharedService.checkoutObject != null || this.sharedService.checkoutObject!=undefined ) {
       this.checkoutObject = this.sharedService.checkoutObject;
     } else {
       if (cartDetails) {

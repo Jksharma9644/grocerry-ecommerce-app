@@ -21,7 +21,8 @@ export class MinicartComponent implements OnInit {
   constructor(public sharedService:SharedService,public router:Router) { 
     this.subscription = this.sharedService.getList().subscribe(list => { 
       // document.getElementById("PPMiniCart").style.display="block";
-      localStorage.removeItem("cart-details");
+      // localStorage.removeItem("cart-details");
+      // console.log(list)
 
       this.cartObject.list=list.map(a=>{
         if(!a.NET_QTY)
@@ -37,7 +38,7 @@ export class MinicartComponent implements OnInit {
       })
       this.cartObject.totalAmount= this.cartObject.list.reduce((a,b)=> a + (b["NET_AMOUNT"] || 0), 0)
      
-      this.isOpen=true;
+      this.sharedService.isMinicartOpen=true;
     
       localStorage.setItem("cart-details",JSON.stringify(this.cartObject));
 
@@ -72,9 +73,12 @@ export class MinicartComponent implements OnInit {
    
   }
   checkout(){
+
     this.sharedService.checkoutObject=this.cartObject;
-    this.isOpen=false;
+    this.sharedService.isMinicartOpen=false;
     this.gotocheckout.emit("true");
+    localStorage.setItem("cart-details",JSON.stringify(this.cartObject));
+
     this.router.navigateByUrl("/checkout")
 
     }

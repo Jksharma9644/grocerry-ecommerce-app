@@ -1,7 +1,7 @@
 <div class="privacy about">
     <h3>Chec<span>kout</span></h3>
 
-
+     <!-- {{checkoutObject | json}} -->
   <div class="checkout-right">
     <h4>Your shopping cart contains:
       <span>{{checkoutObject?.list.length}}Products</span>
@@ -39,7 +39,7 @@
           </td>
           <td class="invert">{{item?.NAME}}</td>
 
-          <td class="invert">${{item?.NET_AMOUNT}}</td>
+          <td class="invert">₹{{item?.NET_AMOUNT}}</td>
           <td class="invert">
             <div class="rem">
               <div class="close1" (click)="remove(i)"> </div>
@@ -115,7 +115,7 @@
         </section>
       </form>
       <div class="checkout-right-basket">
-        <a href="payment.html">Make a Payment
+        <a routerLink="/payment">Make a Payment
           <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
         </a>
       </div>

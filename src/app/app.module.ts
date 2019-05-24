@@ -24,6 +24,7 @@ import {ProductService} from './services/product.service';
 import {SharedService} from './services/shared.service';
 import { CheckoutpageComponent } from './checkoutpage/checkoutpage.component';
 import { MinicartComponent } from './minicart/minicart.component';
+import { PaymentComponent } from './payment/payment.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -42,7 +43,8 @@ import { MinicartComponent } from './minicart/minicart.component';
     ContactUsComponent,
     LoginComponent,
     CheckoutpageComponent,
-    MinicartComponent
+    MinicartComponent,
+    PaymentComponent
   ],
   imports: [
     BrowserModule,

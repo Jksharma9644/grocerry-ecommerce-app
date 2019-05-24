@@ -7,6 +7,7 @@ import { Subject, Observable } from 'rxjs';
 })
 export class SharedService {
   private subject = new Subject<any>();
+  public isMinicartOpen=false;
 
 
   constructor() { }
