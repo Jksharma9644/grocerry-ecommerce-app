@@ -1,6 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule ,} from '@angular/core';
-import { FormsModule }   from '@angular/forms';
+import { FormsModule ,ReactiveFormsModule}   from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -22,9 +22,19 @@ import { LoginComponent } from './login/login.component';
 
 import {ProductService} from './services/product.service';
 import {SharedService} from './services/shared.service';
+import {AuthService} from './services/auth.service';
+import {AuthguardService} from './services/authguard.service';
+import { JwtModule } from '@auth0/angular-jwt';
+export function tokenGetter() {
+  return localStorage.getItem('token');
+}
+
+
 import { CheckoutpageComponent } from './checkoutpage/checkoutpage.component';
 import { MinicartComponent } from './minicart/minicart.component';
 import { PaymentComponent } from './payment/payment.component';
+import { FormLayoutComponent } from './layout/form-layout/form-layout.component';
+import { EmailverificationComponent } from './emailverification/emailverification.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -44,15 +54,27 @@ import { PaymentComponent } from './payment/payment.component';
     LoginComponent,
     CheckoutpageComponent,
     MinicartComponent,
-    PaymentComponent
+    PaymentComponent,
+    FormLayoutComponent,
+    EmailverificationComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule,
-    HttpClientModule
+    ReactiveFormsModule,
+    HttpClientModule,
+    JwtModule.forRoot({
+      config: {
+        tokenGetter: () => {
+          return localStorage.getItem('token');
+        },
+        whitelistedDomains: ['localhost:3000', 'foo.com', 'bar.com'],
+        blacklistedRoutes: ['']
+      }
+    })
   ],
-  providers: [ProductService,SharedService],
+  providers: [ProductService,SharedService,AuthService,AuthguardService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

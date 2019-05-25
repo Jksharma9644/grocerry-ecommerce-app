@@ -36,7 +36,7 @@
     <h3>Hot Offers</h3>
     <div class="agile_top_brands_grids">
       <div #count *ngFor="let item of productList;let i=index;let ev=i">
-        <div class="col-md-3 top_brand_left">
+        <div class="col-md-3 top_brand_left" style="margin:5px 0">
           <div class="hover14 column">
             <div class="agile_top_brand_left_grid">
               <!-- <div class="tag">
@@ -46,7 +46,7 @@
                 <figure>
                   <div class="snipcart-item block">
                     <div class="snipcart-thumb">
-                      <a routerLink="/details/iddynamic">
+                      <a routerLink="/details/{{item.CATEGORY}}">
                         <img title=" " alt=" " src="{{item?.imageurl}}" alt="no image " />
                       </a>
                       <p>{{item.NAME}}</p>

@@ -1,4 +1,4 @@
- {{sharedService.isMinicartOpen}}
+ <!-- {{sharedService.isMinicartOpen}} -->
 <div *ngIf="cartObject?.list.length>0;else cartempty" id="PPMiniCart" [style.display]="sharedService.isMinicartOpen?'block':'none'">
   <form method="post" class="" action="checkout.html" target="">
     <button type="button" class="minicart-closer" (click)="sharedService.isMinicartOpen=false">×</button>

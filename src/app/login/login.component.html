@@ -1,42 +1,68 @@
-<div class="w3_login">
+<div class="w3_login" >
+  <div *ngIf="regComp==null || regComp==false">
   <h3>Sign In & Sign Up</h3>
   <div class="w3_login_module">
     <div class="module form-module">
-      <div class="toggle"><i class="fa fa-times fa-pencil"></i>
-      <div class="tooltip">Click Me</div>
+      <div class="toggle">
+        <i class="fa fa-times fa-pencil"></i>
+        <div class="tooltip">
+          <a *ngIf="login" (click)="toggle(false)">Register</a>
+          <a *ngIf="!login" (click)="toggle(true)">Login</a>
+        </div>
       </div>
-      <div class="form">
-      <h2>Login to your account</h2>
-      <form action="#" method="post">
-        <input type="text" name="Username" placeholder="Username" required=" ">
-        <input type="password" name="Password" placeholder="Password" required=" ">
-        <input type="submit" value="Login">
-      </form>
+      <div class="form" *ngIf="login">
+        <h2>Login to your account</h2>
+        <form [formGroup]="loginForm" (ngSubmit)="login()">
+          <input type="text" formControlName="username" placeholder="Username" required=" ">
+          <input type="password" formControlName="password" placeholder="Password" required=" ">
+          <input type="submit" value="Login">
+        </form>
       </div>
-      <div class="form">
-      <h2>Create an account</h2>
-      <form action="#" method="post">
-        <input type="text" name="Username" placeholder="Username" required=" ">
-        <input type="password" name="Password" placeholder="Password" required=" ">
-        <input type="email" name="Email" placeholder="Email Address" required=" ">
-        <input type="text" name="Phone" placeholder="Phone Number" required=" ">
-        <input type="submit" value="Register">
-      </form>
+      <div class="cta" *ngIf="login">
+        <a href="#">Forgot your password?</a>
       </div>
-      <div class="cta"><a href="#">Forgot your password?</a></div>
+
+      <div class="form" *ngIf="!login">
+        <h2>Create an account</h2>
+        <form [formGroup]="registerForm" (ngSubmit)="Register()">
+          <div class="form-group">
+            <input type="text" formControlName="username" placeholder="Username" required autocomplete="off">
+            <div *ngIf="(registerForm.controls.username.dirty || registerForm.controls.username.touched) && registerForm.controls.username.invalid"
+              class="notification is-danger">
+              {{ formErrors.username}}
+            </div>
+          </div>
+          <div class="form-group">
+            <input type="password" formControlName="password" placeholder="Password" required autocomplete="off">
+
+            <div *ngIf=" (registerForm.controls.password.dirty || registerForm.controls.password.touched) && registerForm.controls.password.invalid"
+              class="notification is-danger">
+              {{ formErrors.password }}
+            </div>
+          </div>
+          <div class="form-group">
+            <input type="email" formControlName="email" placeholder="Email Address" required autocomplete="off">
+            <div *ngIf="(registerForm.controls.email.dirty || registerForm.controls.email.touched) && registerForm.controls.email.invalid"
+              class="notification is-danger">
+              {{ formErrors.email }}
+            </div>
+          </div>
+          <div class="form-group">
+            <input type="text" formControlName="mobile" placeholder="Phone Number" required autocomplete="off">
+            <div *ngIf="(registerForm.controls.mobile.dirty || registerForm.controls.mobile.touched) && registerForm.controls.mobile.invalid"
+              class="notification is-danger">
+              {{ formErrors.mobile}}
+            </div>
+          </div>
+          <p class="wait_msg" *ngIf="regComp!=null && !regComp">{{message}}</p>
+          <input type="submit" value="Register" [ngClass]="{'disabled':!registerForm.valid}" [disabled]="!registerForm.valid">
+        </form>
+      </div>
     </div>
   </div>
-  <script>
-    $('.toggle').click(function(){
-      // Switches the Icon
-      $(this).children('i').toggleClass('fa-pencil');
-      // Switches the forms  
-      $('.form').animate({
-      height: "toggle",
-      'padding-top': 'toggle',
-      'padding-bottom': 'toggle',
-      opacity: "toggle"
-      }, "slow");
-    });
-  </script>
+  </div>
+</div>
+
+<div  class="msg" *ngIf="regComp">
+    <p>{{message}}</p>
 </div>

@@ -1,7 +1,9 @@
 <div class="privacy about">
-    <h3>Chec<span>kout</span></h3>
+  <h3>Chec
+    <span>kout</span>
+  </h3>
 
-     <!-- {{checkoutObject | json}} -->
+  <!-- {{checkoutObject | json}} -->
   <div class="checkout-right">
     <h4>Your shopping cart contains:
       <span>{{checkoutObject?.list.length}}Products</span>
@@ -22,14 +24,14 @@
         <tr class="rem1" *ngFor="let item of checkoutObject?.list;let i=index">
           <td class="invert">{{i+1}}</td>
           <td class="invert-image">
-            <a  routerLink="/details/iddynamic">
+            <a routerLink="/details/iddynamic">
               <img src="{{item?.imageurl}}" alt=" " class="img-responsive">
             </a>
           </td>
           <td class="invert">
             <div class="quantity">
               <div class="quantity-select">
-                <div class="entry value-minus"(click)="deQty(i)">&nbsp;</div>
+                <div class="entry value-minus" (click)="deQty(i)">&nbsp;</div>
                 <div class="entry value">
                   <span>{{item?.NET_QTY}}</span>
                 </div>
@@ -47,7 +49,7 @@
 
           </td>
         </tr>
-        
+
 
       </tbody>
     </table>
@@ -60,7 +62,7 @@
           <i>-</i>
           <span>₹{{item.NET_AMOUNT}} </span>
         </li>
-       
+
         <li>Total Service Charges
           <i>-</i>
           <span>00</span>
@@ -73,36 +75,36 @@
     </div>
     <div class="col-md-8 address_form_agile">
       <h4>Add a new Details</h4>
-      <form action="payment.html" method="post" class="creditly-card-form agileinfo_form">
+      <form [formGroup]="accountForm" (ngSubmit)="onSubmit(accountForm)">
         <section class="creditly-wrapper wthree, w3_agileits_wrapper">
           <div class="information-wrapper">
             <div class="first-row form-group">
               <div class="controls">
                 <label class="control-label">Full name: </label>
-                <input class="billing-address-name form-control" type="text" name="name" placeholder="Full name">
+                <input formControlName="name" class="billing-address-name form-control" type="text" name="name" placeholder="Full name">
               </div>
               <div class="w3_agileits_card_number_grids">
                 <div class="w3_agileits_card_number_grid_left">
                   <div class="controls">
                     <label class="control-label">Mobile number:</label>
-                    <input class="form-control" type="text" placeholder="Mobile number">
+                    <input formControlName="MobileNo" class="form-control" type="text" placeholder="Mobile number">
                   </div>
                 </div>
                 <div class="w3_agileits_card_number_grid_right">
                   <div class="controls">
                     <label class="control-label">Landmark: </label>
-                    <input class="form-control" type="text" placeholder="Landmark">
+                    <input formControlName="landmark"class="form-control" type="text" placeholder="Landmark">
                   </div>
                 </div>
                 <div class="clear"> </div>
               </div>
               <div class="controls">
                 <label class="control-label">Town/City: </label>
-                <input class="form-control" type="text" placeholder="Town/City">
+                <input formControlName="city" class="form-control" type="text" placeholder="Town/City">
               </div>
               <div class="controls">
                 <label class="control-label">Address type: </label>
-                <select class="form-control option-w3ls">
+                <select formControlName="type" class="form-control option-w3ls">
                   <option>Office</option>
                   <option>Home</option>
                   <option>Commercial</option>

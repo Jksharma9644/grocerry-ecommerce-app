@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ProductService } from '../services/product.service';
-import {SharedService} from '../services/shared.service';
-import {Router} from '@angular/router'
+import { SharedService} from '../services/shared.service';
+import { Router} from '@angular/router';
 @Component({
   selector: 'app-mainscreen',
   templateUrl: './mainscreen.component.html',
@@ -48,7 +48,7 @@ export class MainscreenComponent implements OnInit {
 
   }
   addToCart(item){
-   var list =  localStorage.getItem("cart-details")
+   var list =  sessionStorage.getItem("cart-details")
    if(list!=null){
      var cartdetails=JSON.parse(list);
      this.cartList=cartdetails.list;
@@ -67,7 +67,7 @@ export class MainscreenComponent implements OnInit {
       // console.log(   this.cartList);
       // this.router.navigate["/checkout"]
       this.sharedService.senrefreshCardList( object.list);
-      localStorage.setItem("cart-details",JSON.stringify(object));
+      sessionStorage.setItem("cart-details",JSON.stringify(object));
 
     }else{
       alert("item already in cart")

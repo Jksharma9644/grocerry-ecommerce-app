@@ -22,7 +22,7 @@ export class MinicartComponent implements OnInit {
     this.subscription = this.sharedService.getList().subscribe(list => { 
       // document.getElementById("PPMiniCart").style.display="block";
       // localStorage.removeItem("cart-details");
-      // console.log(list)
+      console.log(list)
 
       this.cartObject.list=list.map(a=>{
         if(!a.NET_QTY)
@@ -40,7 +40,7 @@ export class MinicartComponent implements OnInit {
      
       this.sharedService.isMinicartOpen=true;
     
-      localStorage.setItem("cart-details",JSON.stringify(this.cartObject));
+      sessionStorage.setItem("cart-details",JSON.stringify(this.cartObject));
 
     
     });
@@ -52,18 +52,18 @@ export class MinicartComponent implements OnInit {
 
   }
   qtyChange(index,event){
-    localStorage.removeItem("cart-details");
+    sessionStorage.removeItem("cart-details");
     this.cartObject.list[index].NET_QTY=event;
     this.cartObject.list[index].NET_AMOUNT= this.cartObject.list[index].NET_QTY*this.cartObject.list[index].NETPRICE;
     this.cartObject.totalAmount=  this.cartObject.list.reduce((a,b)=> a + (b["NET_AMOUNT"] || 0), 0)
-    localStorage.setItem("cart-details",JSON.stringify(this.cartObject));
+    sessionStorage.setItem("cart-details",JSON.stringify(this.cartObject));
   }
   remove(index){
-    localStorage.removeItem("cart-details");
+    sessionStorage.removeItem("cart-details");
     if(this.cartObject.list.length>1){
       this.cartObject.list.splice(index,1);
       this.cartObject.totalAmount=  this.cartObject.list.reduce((a,b)=> a + (b["NET_AMOUNT"] || 0), 0)
-      localStorage.setItem("cart-details",JSON.stringify(this.cartObject));
+      sessionStorage.setItem("cart-details",JSON.stringify(this.cartObject));
 
     }else{
       if(this.cartObject.list.length==0){
@@ -77,7 +77,7 @@ export class MinicartComponent implements OnInit {
     this.sharedService.checkoutObject=this.cartObject;
     this.sharedService.isMinicartOpen=false;
     // this.gotocheckout.emit("true");
-    localStorage.setItem("cart-details",JSON.stringify(this.cartObject));
+    sessionStorage.setItem("cart-details",JSON.stringify(this.cartObject));
 
     this.router.navigateByUrl("/checkout")
 

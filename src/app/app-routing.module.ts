@@ -9,6 +9,9 @@ import { ContactUsComponent } from './contact-us/contact-us.component';
 import { LoginComponent } from './login/login.component';
 import { CheckoutpageComponent } from './checkoutpage/checkoutpage.component';
 import { PaymentComponent } from './payment/payment.component';
+import { AuthguardService as AuthGuard } from './services/authguard.service';
+import { FormLayoutComponent } from './layout/form-layout/form-layout.component';
+import { EmailverificationComponent } from './emailverification/emailverification.component';
 
 const routes: Routes = [
   {
@@ -25,9 +28,17 @@ const routes: Routes = [
       { path: 'product/:item', component: ProductBycategoryComponent },
       { path: 'details/:id', component: ProductDetailComponent },
       { path: 'contact', component: ContactUsComponent },
-      { path: 'checkout', component: CheckoutpageComponent },
-      { path: 'payment', component: PaymentComponent },
-      { path: 'login', component: LoginComponent }
+      { path: 'checkout', component: CheckoutpageComponent, canActivate: [AuthGuard] },
+      { path: 'payment', component: PaymentComponent, canActivate: [AuthGuard] },
+     
+    ]
+  },
+  {
+    path: "",
+    component: FormLayoutComponent,
+    children: [
+      { path: 'login', component: LoginComponent },
+      { path: 'auth/activated/:id', component: EmailverificationComponent }
     ]
   },
   { path: '**', redirectTo: '' }

@@ -1,0 +1,8 @@
+<div class="w3_login" >
+
+</div>
+<div  class="msg" >
+    <p>{{message}}</p>
+    <p *ngIf="loginenabled"><a routerLink="/login">Login</a></p>
+    <p *ngIf="!loginenabled && loginenabled!=null"><a (click)="resend()">Resend</a></p>
+</div>
