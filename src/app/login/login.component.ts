@@ -172,7 +172,7 @@ export class LoginComponent implements OnInit {
         this._authService.authenticatedUser.email = this.loginResponse["email"];
         this._authService.authenticatedUser.token = this.loginResponse["token"];
         this.message = "";
-        this.router.navigate(['']);
+        this.router.navigate(['/checkout']);
 
       } else {
         this.message = response["message"];
