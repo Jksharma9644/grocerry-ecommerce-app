@@ -1,68 +1,107 @@
-<div class="w3_login" >
+<div class="w3_login">
   <div *ngIf="regComp==null || regComp==false">
-  <h3>Sign In & Sign Up</h3>
-  <div class="w3_login_module">
-    <div class="module form-module">
-      <div class="toggle">
-        <i class="fa fa-times fa-pencil"></i>
-        <div class="tooltip">
-          <a *ngIf="login" (click)="toggle(false)">Register</a>
-          <a *ngIf="!login" (click)="toggle(true)">Login</a>
+    <h3>Sign In & Sign Up</h3>
+    <div class="w3_login_module">
+      <div class="module form-module">
+        <div class="toggle">
+          <i class="fa fa-times fa-pencil"></i>
+          <div class="tooltip">
+            <a *ngIf="login" (click)="toggle(false)">Register</a>
+            <a *ngIf="!login" (click)="toggle(true)">Login</a>
+          </div>
         </div>
-      </div>
-      <div class="form" *ngIf="login">
-        <h2>Login to your account</h2>
-        <form [formGroup]="loginForm" (ngSubmit)="login()">
-          <input type="text" formControlName="username" placeholder="Username" required=" ">
-          <input type="password" formControlName="password" placeholder="Password" required=" ">
-          <input type="submit" value="Login">
-        </form>
-      </div>
-      <div class="cta" *ngIf="login">
-        <a href="#">Forgot your password?</a>
-      </div>
+        <div class="form" *ngIf="login">
+          <h2>Login to your account</h2>
+          <form [formGroup]="loginForm" (ngSubmit)="login()">
+            <div class="form-group">
 
-      <div class="form" *ngIf="!login">
-        <h2>Create an account</h2>
-        <form [formGroup]="registerForm" (ngSubmit)="Register()">
-          <div class="form-group">
-            <input type="text" formControlName="username" placeholder="Username" required autocomplete="off">
-            <div *ngIf="(registerForm.controls.username.dirty || registerForm.controls.username.touched) && registerForm.controls.username.invalid"
-              class="notification is-danger">
-              {{ formErrors.username}}
+              <input type="text" formControlName="email" placeholder="Email" required autocomplete="off">
+              <div *ngIf="(loginForm.controls.email.dirty || loginForm.controls.email.touched) && loginForm.controls.email.invalid" class="notification is-danger">
+                {{ formErrors.username}}
+              </div>
             </div>
-          </div>
-          <div class="form-group">
-            <input type="password" formControlName="password" placeholder="Password" required autocomplete="off">
+            <div class="form-group">
+              <input type="password" formControlName="password" placeholder="Password" required autocomplete="off">
+              <div *ngIf=" (loginForm.controls.password.dirty || loginForm.controls.password.touched) && loginForm.controls.password.invalid"
+                class="notification is-danger">
+                {{ formErrors.password }}
+              </div>
+            </div>
+            <p class="wait_msg">{{message}}</p>
 
-            <div *ngIf=" (registerForm.controls.password.dirty || registerForm.controls.password.touched) && registerForm.controls.password.invalid"
-              class="notification is-danger">
-              {{ formErrors.password }}
+            <input type="submit" value="Login" [ngClass]="{'disabled':!loginForm.valid}" [disabled]="!loginForm.valid">
+
+          </form>
+        </div>
+        <div class="cta" *ngIf="login">
+          <a href="#">Forgot your password?</a>
+        </div>
+
+        <div class="form" *ngIf="!login">
+          <h2>Create an account</h2>
+          <form [formGroup]="registerForm" (ngSubmit)="Register()">
+            <div class="form-group">
+              <input type="text" formControlName="username" placeholder="Username" required autocomplete="off">
+              <div *ngIf="(registerForm.controls.username.dirty || registerForm.controls.username.touched) && registerForm.controls.username.invalid"
+                class="notification is-danger">
+                {{ formErrors.username}}
+              </div>
             </div>
-          </div>
-          <div class="form-group">
-            <input type="email" formControlName="email" placeholder="Email Address" required autocomplete="off">
-            <div *ngIf="(registerForm.controls.email.dirty || registerForm.controls.email.touched) && registerForm.controls.email.invalid"
-              class="notification is-danger">
-              {{ formErrors.email }}
+            <div class="form-group">
+              <input type="password" formControlName="password" placeholder="Password" required autocomplete="off">
+
+              <div *ngIf=" (registerForm.controls.password.dirty || registerForm.controls.password.touched) && registerForm.controls.password.invalid"
+                class="notification is-danger">
+                {{ formErrors.password }}
+              </div>
             </div>
-          </div>
-          <div class="form-group">
-            <input type="text" formControlName="mobile" placeholder="Phone Number" required autocomplete="off">
-            <div *ngIf="(registerForm.controls.mobile.dirty || registerForm.controls.mobile.touched) && registerForm.controls.mobile.invalid"
-              class="notification is-danger">
-              {{ formErrors.mobile}}
+            <div class="form-group">
+              <input type="email" formControlName="email" placeholder="Email Address" required autocomplete="off">
+              <div *ngIf="(registerForm.controls.email.dirty || registerForm.controls.email.touched) && registerForm.controls.email.invalid"
+                class="notification is-danger">
+                {{ formErrors.email }}
+              </div>
             </div>
-          </div>
-          <p class="wait_msg" *ngIf="regComp!=null && !regComp">{{message}}</p>
-          <input type="submit" value="Register" [ngClass]="{'disabled':!registerForm.valid}" [disabled]="!registerForm.valid">
-        </form>
+            <div class="form-group">
+              <input type="text" formControlName="mobile" placeholder="Phone Number" required autocomplete="off">
+              <div *ngIf="(registerForm.controls.mobile.dirty || registerForm.controls.mobile.touched) && registerForm.controls.mobile.invalid"
+                class="notification is-danger">
+                {{ formErrors.mobile}}
+              </div>
+            </div>
+            <p class="wait_msg" *ngIf="regComp!=null && !regComp">{{message}}</p>
+            <input type="submit" value="Register" [ngClass]="{'disabled':!registerForm.valid}" [disabled]="!registerForm.valid">
+          </form>
+        </div>
       </div>
     </div>
   </div>
+  <div *ngIf="regComp && !otpVerification">
+    <h2>OTP VERIFICATION</h2>
+    <div class="w3_login_module">
+      <div class="module form-module">
+        <div style="padding: 40px">
+          <div  class="otp_msg">
+            <p> Send otp to {{this.userInfo?.mobile}} to verfy Mobile No <a (click)="sendOTP()">Send</a></p>
+           
+            <form [formGroup]="otpVerificationForm" (ngSubmit)="verifyOtp()">
+              <div class="form-group" class="otp_verification">
+                <input  style="width:100%" type="Number" min="10000" max="99999" formControlName="otp" placeholder="" required autocomplete="off">
+                <div *ngIf="(otpVerificationForm.controls.otp.dirty || otpVerificationForm.controls.otp.touched) && otpVerificationForm.controls.otp.invalid"
+                  class="notification is-danger">
+                  {{formErrors.otp}}
+                </div>
+              </div>
+              <p class="wait_msg" *ngIf="!otpVerification">{{message}}</p>
+              <input type="submit" value="Submit" [ngClass]="{'disabled':!otpVerificationForm.valid && otpVerification==false}" [disabled]="!otpVerificationForm.valid">
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 </div>
 
-<div  class="msg" *ngIf="regComp">
-    <p>{{message}}</p>
+<div class="msg" *ngIf="otpVerification">
+  <p>{{message}}</p>
 </div>

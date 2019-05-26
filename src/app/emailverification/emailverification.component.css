@@ -22,10 +22,20 @@
 .msg{
     height: 200px;
     text-align: center;
-    color: #84C639;
+    /* color: #84C639; */
     font-size: 20px;
     position: relative;
     height: 200px;
     top: -150px;
     position: relative;
+    display: table;
+    width: 50%;
+    left: 50%;
+    transform: translate(-50%);
+    background: #ddd;
 }
+.msg p{
+    display: table-cell;
+    vertical-align: middle
+}
+
