@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { JwtHelperService } from '@auth0/angular-jwt';
+// import { JwtHelperService } from '@auth0/angular-jwt';
 import { HttpClient, HttpParams, HttpHeaders } from '@angular/common/http';
 import { environment } from '../../environments/environment';
 import { Router, CanActivate } from '@angular/router';
@@ -18,7 +18,7 @@ export class AuthService {
     email: "",
   };
 
-  constructor(public jwtHelper: JwtHelperService, public http: HttpClient, private router: Router) {
+  constructor( public http: HttpClient, private router: Router) {
     this.baseURl = environment.apiUrl;
   }
 

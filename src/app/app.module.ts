@@ -24,10 +24,7 @@ import {ProductService} from './services/product.service';
 import {SharedService} from './services/shared.service';
 import {AuthService} from './services/auth.service';
 import {AuthguardService} from './services/authguard.service';
-import { JwtModule } from '@auth0/angular-jwt';
-export function tokenGetter() {
-  return localStorage.getItem('token');
-}
+
 
 
 import { CheckoutpageComponent } from './checkoutpage/checkoutpage.component';
@@ -63,8 +60,7 @@ import { EmailverificationComponent } from './emailverification/emailverificatio
     AppRoutingModule,
     FormsModule,
     ReactiveFormsModule,
-    HttpClientModule,
-    JwtModule.forRoot({})
+    HttpClientModule
   ],
   providers: [ProductService,SharedService,AuthService,AuthguardService],
   bootstrap: [AppComponent]
