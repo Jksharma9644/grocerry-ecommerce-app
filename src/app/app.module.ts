@@ -64,15 +64,7 @@ import { EmailverificationComponent } from './emailverification/emailverificatio
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
-    JwtModule.forRoot({
-      config: {
-        tokenGetter: () => {
-          return localStorage.getItem('token');
-        },
-        whitelistedDomains: ['localhost:3000', 'foo.com', 'bar.com'],
-        blacklistedRoutes: ['']
-      }
-    })
+    JwtModule.forRoot({})
   ],
   providers: [ProductService,SharedService,AuthService,AuthguardService],
   bootstrap: [AppComponent]
