@@ -1,4 +1,6 @@
 const express = require('express');
+port = process.env.PORT || 4000;
+
 // const app = express();
 
 // const forceSSL = function() {
@@ -39,4 +41,6 @@ res.sendFile(path.join(__dirname+'/dist/grocerry-ecommerce-app/index.html'));
 });
 
 // Start the app by listening on the default Heroku port
-app.listen(process.env.PORT || 4000);
+app.listen(process.env.PORT || 4000,function(){
+    console.log('application started on: ' + port);
+});
